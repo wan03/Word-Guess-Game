@@ -14,7 +14,7 @@
 
 
 
-// Set the way the user is going to select letters
+// Set the way the user is going to select letters, use functions!
 
 
 
