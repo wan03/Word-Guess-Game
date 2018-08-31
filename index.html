@@ -9,19 +9,52 @@
   <title>Hangman Game</title>
 </head>
 <body>
-  <h1>Hangman Game</h1>
+  <main>
+    <section>
+      <h1>Wan's Hangman Game</h1>
 
   <!-- Paragraph explaining the game and rules -->
 
+      <p>Hi! Welcome to my game. The rules are very simple:</p>
+      <ol>
+        <li>The computer will chose a random word</li>
+        <li>You can guess a letter</li>
+        <li>If its part of the word that letter will be revealed if it is not part of the word you lose a life</li>
+        <li>If you guess the word corrently you will be awarded a point if you don't your lose counter will increase</li>
+        <li>Have fun!</li>
+      </ol>
+    </section>
 
   <!-- Picture of hangman, hopefully with overimposed elements that can dissapear to reveal the rest of the image below -->
 
+    <section>
+      <h2>Hangman</h2>
+      <div>
+        <img src="" alt="placeholder">
+
+      </div>
+
+<!-- Actual game interface -->
+
+      <div>
+        <h3>
+
+        </h3>
+        <div>
+          <p>Guessed Letters</p>
+          <p id="guessedLetters"></p>
+          <p id="lives"></p>
+          <p>Wins: </p>
+          <p>Losses: </p>     
+          <button id="startGame">New Game</button>     
+        </div>
+
+      </div>
+    </section>
 
   
-  <!-- Actual game interface -->
-
-
-
+  
+</main>
   <script type="text/javascript" src="assets/js/game.js"></script>
     
 </body>
