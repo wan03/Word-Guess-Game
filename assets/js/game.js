@@ -1,5 +1,16 @@
+// On load funtion (seems cool)
+window.onload = function () {
+
+
+
+
+
+
 // Declare needed variables
 
+var letters = ["a", "b", "c", "d", "e", "f", "g", "h",
+        "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
+        "t", "u", "v", "w", "x", "y", "z"];
 
 var wordChoices = [
   "throw",
@@ -12,20 +23,57 @@ var wordChoices = [
   "hyperextension",
   "defense",
   "tournament",
-  "arm bar"
+  "arm-bar"
 
 ];
 
-var word
-var lives = 10
-var showlives = document.getElementById("lives");
-var game = {
-  wins: 0,
-  losses: 0,
-  // computerGuess:
-};
+var word;
+var lives = 10;
+var showLives = document.getElementById("lives");
+var wins = 0;
+var losses = 0;
+var wordGuess;
+var guesses = [ ];
+
 
 var guessedLetters = document.getElementById("guessedLetters");
+
+//Function to create the word container
+
+result = function () {
+  wordHolder = document.getElementById("computer-word");
+  correct = document.createElement("ul");
+
+  for (var i = 0; i < word.length; i++) {
+    correct.setAttribute("id", "my-word");
+    wordGuess = document.createElement("li");
+    wordGuess.setAttribute("class", "guess");
+    if (word[i] === "-") {
+      wordGuess.innerHTML = "-";
+      space = 1;
+    } else {
+      wordGuess.innerHTML = "_";
+    }
+
+    guesses.push(wordGuess);
+    wordHolder.appendChild(correct);
+    correct.appendChild(wordGuess);
+  }
+}
+
+
+// Set the way the computer is going to randomly choose words
+var start = document.getElementById("startGame")
+
+start.addEventListener("click", function(){
+  word = wordChoices[Math.floor(Math.random() * wordChoices.length)];
+
+  result()
+  console.log(word);
+});  
+
+
+  
 
 // Set the way the user is going to select letters, use functions!
 
@@ -68,20 +116,6 @@ function storeKey(event) {
 
 
 
-// Set the way the computer is going to randomly choose words
-var start = document.getElementById("startGame")
-
-start.addEventListener("click", function(){
-  var wordGuess = wordChoices[Math.floor(Math.random() * Choices.length)];
-
-  console.log(wordGuess);
-
-
-
-});
-  
-
-
 
 // Check for whether the user guessed letter matches any of the character in the randomly generated word
 
@@ -103,3 +137,5 @@ start.addEventListener("click", function(){
 
 
 //Reset game and choose a different word
+
+}
