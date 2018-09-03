@@ -42,13 +42,17 @@ var wordHolder = document.getElementById("computer-word");
 var start = document.getElementById("start-game");
 var reset = document.getElementById("reset-game");
 
+
 //Function to create the word container
 reset = function(){
   wordHolder.innerHTML = " ";
   guessedLetters.innerHTML = " ";
   lives = 10;  
+  // usedKeys = " ";
   
 }
+
+
 
 result = function () {
   wordHolder = document.getElementById("computer-word");
@@ -76,6 +80,9 @@ result = function () {
 
 play = function() {
   word = wordChoices[Math.floor(Math.random() * wordChoices.length)];
+  lives = 10;
+  counter = 0;
+  space = 0;
   
   result();
   comments();
@@ -87,8 +94,7 @@ play = function() {
 
 start.addEventListener("click", function(){
   reset();
-  // stop
-  play ();
+  play();
 
 }); 
 
@@ -100,18 +106,38 @@ start.addEventListener("click", function(){
 //   return (event.key);
 // };
 check = function() {
-document.onkeyup = function(event) {
-  var keypress = event.key.toLowerCase();
-  var userGuess = storeKey(event);
 
+var usedKeys = [ ];  
+
+document.onkeyup = function(event) {
   
+  
+  var keypress = event.key.toLowerCase();  
+  var userGuess = storeKey(event);
+  var fired = true;
+
+
+
+  // if (usedKeys.includes(keypress)) {
+  //   fired = false;  
+    
+  // } else {
+  //   fired = true;
+  // };
+  
+  if (usedKeys.includes(keypress) == false) {
   if (keypress == "a" || keypress == "b" || keypress == "c" || keypress == "d" || keypress == "e" || keypress == "f" || keypress == "g" || keypress == "h" || keypress == "i" || keypress == "j" || keypress == "k" || keypress == "l" || keypress == "m" || keypress == "n" || keypress == "o" || keypress == "p" || keypress == "q" || keypress == "r" || keypress == "s" || keypress == "t" || keypress == "u" || keypress == "v" || keypress == "w" || keypress == "x" || keypress == "y" || keypress == "z") {
     
   // guessedLetters.innerHTML += userGuess;
+    
+    usedKeys.push(userGuess);
+    console.log(usedKeys);
+    
 
+
+    
     for (var i = 0; i < word.length; i++) {
-      if (word[i] === userGuess) {
-        // console.log(userGuess)
+      if (word[i] === userGuess) {        
         var changeLetter = document.getElementById("guess"+i);
         changeLetter.innerHTML=userGuess;
         // guesses[i].innerHTML = userGuess;
@@ -121,6 +147,7 @@ document.onkeyup = function(event) {
         // guesses[i].innerHTML = userGuess;
         counter += 1;
         // guessedLetters.innerHTML += userGuess;
+
       } 
     }
     var j = (word.indexOf(userGuess));
@@ -131,10 +158,12 @@ document.onkeyup = function(event) {
       // animate();
     } else {
       comments();
-    }
+    };
   
-
   };
+  
+  };
+
 };
 
 
@@ -161,7 +190,7 @@ function storeKey(event) {
   comments = function () {
     showLives.innerHTML = "You have " + lives + " lives";
     if (lives < 1) {
-      showLives.innerHTML = "Game Over: Please click on New Game to continue playing.";
+      showLives.innerHTML = "Game Over: Please click on New Game or press any key to continue playing.";
       reset();
         document.onkeyup = function(event) {
         var keypress = event.key.toLowerCase();
@@ -173,11 +202,40 @@ function storeKey(event) {
     };
     for (var i = 0; i < word.length; i++) {
       if (counter + space === word.length) {
-        showLives.innerHTML = "You Win! Please click on New Game to continue playing";
+        showLives.innerHTML = "You Win! Please click on New Game or press any key to continue playing";
         reset();
+        document.onkeyup = function(event) {
+          var keypress = event.key.toLowerCase();
+          if (keypress == "a" || keypress == "b" || keypress == "c" || keypress == "d" || keypress == "e" || keypress == "f" || keypress == "g" || keypress == "h" || keypress == "i" || keypress == "j" || keypress == "k" || keypress == "l" || keypress == "m" || keypress == "n" || keypress == "o" || keypress == "p" || keypress == "q" || keypress == "r" || keypress == "s" || keypress == "t" || keypress == "u" || keypress == "v" || keypress == "w" || keypress == "x" || keypress == "y" || keypress == "z") {
+              play();
+  
+          };
+          };
       };
     };
   };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
    // Do not really understand how to do this from scratch but thought it was really cool and wanted to include it. Couldn't get it to work properly, will try again later as I want to get the core of the game going first. 
 
