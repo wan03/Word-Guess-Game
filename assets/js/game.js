@@ -45,7 +45,8 @@ var reset = document.getElementById("reset-game");
 //Function to create the word container
 reset = function(){
   wordHolder.innerHTML = " ";
-  guessedLetters.innerHTML = " ";  
+  guessedLetters.innerHTML = " ";
+  lives = 10;  
   
 }
 
@@ -86,7 +87,7 @@ play = function() {
 
 start.addEventListener("click", function(){
   reset();
-  stop
+  // stop
   play ();
 
 }); 
@@ -162,6 +163,7 @@ function storeKey(event) {
     if (lives < 1) {
       showLives.innerHTML = "Game Over: Please click on New Game to continue playing.";
       reset();
+      
     }
     for (var i = 0; i < word.length; i++) {
       if (counter + space === word.length) {
