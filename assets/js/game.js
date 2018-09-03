@@ -163,15 +163,21 @@ function storeKey(event) {
     if (lives < 1) {
       showLives.innerHTML = "Game Over: Please click on New Game to continue playing.";
       reset();
-      
-    }
+        document.onkeyup = function(event) {
+        var keypress = event.key.toLowerCase();
+        if (keypress == "a" || keypress == "b" || keypress == "c" || keypress == "d" || keypress == "e" || keypress == "f" || keypress == "g" || keypress == "h" || keypress == "i" || keypress == "j" || keypress == "k" || keypress == "l" || keypress == "m" || keypress == "n" || keypress == "o" || keypress == "p" || keypress == "q" || keypress == "r" || keypress == "s" || keypress == "t" || keypress == "u" || keypress == "v" || keypress == "w" || keypress == "x" || keypress == "y" || keypress == "z") {
+            play();
+
+        };
+        };
+    };
     for (var i = 0; i < word.length; i++) {
       if (counter + space === word.length) {
         showLives.innerHTML = "You Win! Please click on New Game to continue playing";
         reset();
-      }
-    }
-  }
+      };
+    };
+  };
 
    // Do not really understand how to do this from scratch but thought it was really cool and wanted to include it. Couldn't get it to work properly, will try again later as I want to get the core of the game going first. 
 
@@ -179,7 +185,7 @@ function storeKey(event) {
   var animate = function () {
     var drawMe = lives ;
     drawArray[drawMe]();
-  }
+  };
 
 //Hangman
 
@@ -267,4 +273,4 @@ function storeKey(event) {
 
 //Reset game and choose a different word. Did this by asking the player to click on New Game. Will try later to see if I can automate that.
 
-}
+};
