@@ -69,7 +69,7 @@ start.addEventListener("click", function(){
   word = wordChoices[Math.floor(Math.random() * wordChoices.length)];
 
   result()
-  console.log(word);
+  // console.log(word);
 });  
 
 
