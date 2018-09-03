@@ -34,9 +34,10 @@ var wins = 0;
 var losses = 0;
 var wordGuess;
 var guesses = [ ];
-
-
+var showLives = document.getElementById("lives");
+var counter;
 var guessedLetters = document.getElementById("guessedLetters");
+var space = 1;
 
 //Function to create the word container
 
@@ -55,7 +56,7 @@ result = function () {
       wordGuess.innerHTML = "_";
     }
 
-    guesses.push(wordGuess);
+    guesses.push(word);
     wordHolder.appendChild(correct);
     correct.appendChild(wordGuess);
   }
@@ -68,7 +69,9 @@ var start = document.getElementById("startGame")
 start.addEventListener("click", function(){
   word = wordChoices[Math.floor(Math.random() * wordChoices.length)];
 
-  result()
+  result();
+  comments();
+  check();
   // console.log(word);
 });  
 
@@ -77,22 +80,39 @@ start.addEventListener("click", function(){
 
 // Set the way the user is going to select letters, use functions!
 
-var userGuess = function storeKey(event) {
-  return (event.key);
-};
-
+// var userGuess = function storeKey(event) {
+//   return (event.key);
+// };
+check = function() {
 document.onkeyup = function(event) {
   var keypress = event.key.toLowerCase();
   var userGuess = storeKey(event);
 
   
-  if (keypress == "a" || keypress == "b" || keypress == "c" || keypress == "d" || keypress == "f" || keypress == "g" || keypress == "h" || keypress == "j" || keypress == "k" || keypress == "l" || keypress == "m" || keypress == "n" || keypress == "o" || keypress == "p" || keypress == "q" || keypress == "r" || keypress == "s" || keypress == "t" || keypress == "u" || keypress == "v" || keypress == "w" || keypress == "x" || keypress == "y" || keypress == "z") {
+  if (keypress == "a" || keypress == "b" || keypress == "c" || keypress == "d" || keypress == "e" || keypress == "f" || keypress == "g" || keypress == "h" || keypress == "i" || keypress == "j" || keypress == "k" || keypress == "l" || keypress == "m" || keypress == "n" || keypress == "o" || keypress == "p" || keypress == "q" || keypress == "r" || keypress == "s" || keypress == "t" || keypress == "u" || keypress == "v" || keypress == "w" || keypress == "x" || keypress == "y" || keypress == "z") {
     
+  // guessedLetters.innerHTML += userGuess;
 
-  guessedLetters.innerHTML += userGuess
+    for (var i = 0; i < word.length; i++) {
+      if (word[i] === userGuess) {
+        guesses[i].innerHTML = userGuess;
+        counter += 1;
+        guessedLetters.innerHTML += userGuess;
+      } 
+    }
+    var j = (word.indexOf(userGuess));
+    if (j === -1) {
+      lives -= 1;
+      guessedLetters.innerHTML += userGuess;
+      comments();
+      // animate();
+    } else {
+      comments();
+    }
+  
 
   };
-
+};
 
 
   // var guessedLetters = document.getElementById("guessedLetters")
@@ -114,7 +134,90 @@ function storeKey(event) {
 // Research how to do an object to put logic in it
 
 
+  // Show lives
+  comments = function () {
+    showLives.innerHTML = "You have " + lives + " lives";
+    if (lives < 1) {
+      showLives.innerHTML = "Game Over";
+    }
+    for (var i = 0; i < word.length; i++) {
+      if (counter + space === word.length) {
+        showLives.innerHTML = "You Win!";
+      }
+    }
+  }
 
+   // Do not really understand how to do this from scratch but thought it was really cool and wanted to include it. Couldn't get it to work properly, will try again later as I want to get the core of the game going first. 
+
+  // Animate man
+  var animate = function () {
+    var drawMe = lives ;
+    drawArray[drawMe]();
+  }
+
+//Hangman
+
+   canvas =  function(){
+
+    myStickman = document.getElementById("stickman");
+    context = myStickman.getContext('2d');
+    context.beginPath();
+    context.strokeStyle = "#fff";
+    context.lineWidth = 2;
+  };
+  
+    head = function(){
+      myStickman = document.getElementById("stickman");
+      context = myStickman.getContext('2d');
+      context.beginPath();
+      context.arc(60, 25, 10, 0, Math.PI*2, true);
+      context.stroke();
+    }
+    
+  draw = function($pathFromx, $pathFromy, $pathTox, $pathToy) {
+    
+    context.moveTo($pathFromx, $pathFromy);
+    context.lineTo($pathTox, $pathToy);
+    context.stroke(); 
+}
+
+   frame1 = function() {
+     draw (0, 150, 150, 150);
+   };
+   
+   frame2 = function() {
+     draw (10, 0, 10, 600);
+   };
+  
+   frame3 = function() {
+     draw (0, 5, 70, 5);
+   };
+  
+   frame4 = function() {
+     draw (60, 5, 60, 15);
+   };
+  
+   torso = function() {
+     draw (60, 36, 60, 70);
+   };
+  
+   rightArm = function() {
+     draw (60, 46, 100, 50);
+   };
+  
+   leftArm = function() {
+     draw (60, 46, 20, 50);
+   };
+  
+   rightLeg = function() {
+     draw (60, 70, 100, 100);
+   };
+  
+   leftLeg = function() {
+     draw (60, 70, 20, 100);
+   };
+  
+  drawArray = [rightLeg, leftLeg, rightArm, leftArm,  torso,  head, frame4, frame3, frame2, frame1]; 
 
 
 // Check for whether the user guessed letter matches any of the character in the randomly generated word
