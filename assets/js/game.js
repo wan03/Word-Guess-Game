@@ -39,23 +39,23 @@ var counter;
 var guessedLetters = document.getElementById("guessedLetters");
 var space = 1;
 var wordHolder = document.getElementById("computer-word");
+var start = document.getElementById("start-game");
+var reset = document.getElementById("reset-game");
 
 //Function to create the word container
 reset = function(){
   wordHolder.innerHTML = " ";
-  guessedLetters.innerHTML = " ";
-  // showLives = " ";
+  guessedLetters.innerHTML = " ";  
   
 }
 
 result = function () {
   wordHolder = document.getElementById("computer-word");
-  correct = document.createElement("ul");
+  
 
   for (var i = 0; i < word.length; i++) {
-    correct.setAttribute("id", "my-word");
-    wordGuess = document.createElement("li");
-    wordGuess.setAttribute("class", "guess");
+    wordGuess = document.createElement("span");
+    wordGuess.setAttribute("id", "guess"+i);
     if (word[i] === "-") {
       wordGuess.innerHTML = "-";
       space = 1;
@@ -63,26 +63,33 @@ result = function () {
       wordGuess.innerHTML = "_";
     }
 
-    guesses.push(word);
-    wordHolder.appendChild(correct);
-    correct.appendChild(wordGuess);
+    wordHolder.appendChild(wordGuess);
+    console.log(word)
   }
 }
 
 
-// Set the way the computer is going to randomly choose words
-var start = document.getElementById("startGame")
+// Set the way the computer is going to randomly choose words. Now this has turned into click to make everything work. Decided to wrap the word choice in its own function so that maybe I will be able to reuse it.
 
-start.addEventListener("click", function(){
+
+
+play = function() {
   word = wordChoices[Math.floor(Math.random() * wordChoices.length)];
-
-  reset()
+  
   result();
   comments();
   check();
   // console.log(word);
-});  
+};
 
+//Getting the button to work
+
+start.addEventListener("click", function(){
+  reset();
+  stop
+  play ();
+
+}); 
 
   
 
@@ -103,9 +110,16 @@ document.onkeyup = function(event) {
 
     for (var i = 0; i < word.length; i++) {
       if (word[i] === userGuess) {
-        guesses[i].innerHTML = userGuess;
+        // console.log(userGuess)
+        var changeLetter = document.getElementById("guess"+i);
+        changeLetter.innerHTML=userGuess;
+        // guesses[i].innerHTML = userGuess;
+        // guesses[i] = userGuess;
+        // guesses[i] = wordGuess[i];
+        // wordGuess[1].innerHTML = userGuess;
+        // guesses[i].innerHTML = userGuess;
         counter += 1;
-        guessedLetters.innerHTML += userGuess;
+        // guessedLetters.innerHTML += userGuess;
       } 
     }
     var j = (word.indexOf(userGuess));
@@ -146,11 +160,13 @@ function storeKey(event) {
   comments = function () {
     showLives.innerHTML = "You have " + lives + " lives";
     if (lives < 1) {
-      showLives.innerHTML = "Game Over: Please click on New Game.";
+      showLives.innerHTML = "Game Over: Please click on New Game to continue playing.";
+      reset();
     }
     for (var i = 0; i < word.length; i++) {
       if (counter + space === word.length) {
-        showLives.innerHTML = "You Win!";
+        showLives.innerHTML = "You Win! Please click on New Game to continue playing";
+        reset();
       }
     }
   }
