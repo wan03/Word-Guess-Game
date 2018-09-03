@@ -38,8 +38,15 @@ var showLives = document.getElementById("lives");
 var counter;
 var guessedLetters = document.getElementById("guessedLetters");
 var space = 1;
+var wordHolder = document.getElementById("computer-word");
 
 //Function to create the word container
+reset = function(){
+  wordHolder.innerHTML = " ";
+  guessedLetters.innerHTML = " ";
+  // showLives = " ";
+  
+}
 
 result = function () {
   wordHolder = document.getElementById("computer-word");
@@ -69,6 +76,7 @@ var start = document.getElementById("startGame")
 start.addEventListener("click", function(){
   word = wordChoices[Math.floor(Math.random() * wordChoices.length)];
 
+  reset()
   result();
   comments();
   check();
@@ -138,7 +146,7 @@ function storeKey(event) {
   comments = function () {
     showLives.innerHTML = "You have " + lives + " lives";
     if (lives < 1) {
-      showLives.innerHTML = "Game Over";
+      showLives.innerHTML = "Game Over: Please click on New Game.";
     }
     for (var i = 0; i < word.length; i++) {
       if (counter + space === word.length) {
@@ -239,6 +247,6 @@ function storeKey(event) {
 
 
 
-//Reset game and choose a different word
+//Reset game and choose a different word. Did this by asking the player to click on New Game. Will try later to see if I can automate that.
 
 }
