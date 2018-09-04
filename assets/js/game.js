@@ -1,16 +1,7 @@
 // On load funtion (seems cool)
 window.onload = function () {
 
-
-
-
-
-
 // Declare needed variables
-
-var letters = ["a", "b", "c", "d", "e", "f", "g", "h",
-        "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
-        "t", "u", "v", "w", "x", "y", "z"];
 
 var wordChoices = [
   "throw",
@@ -23,17 +14,16 @@ var wordChoices = [
   "hyperextension",
   "defense",
   "tournament",
-  "arm-bar"
-
+  "arm-bar",
+  "jigoro-kano",
+  "morihei-ueshiba",
+  "ju-jutsu"  
 ];
 
 var word;
 var lives = 10;
 var showLives = document.getElementById("lives");
-var wins = 0;
-var losses = 0;
 var wordGuess;
-var guesses = [ ];
 var showLives = document.getElementById("lives");
 var counter;
 var guessedLetters = document.getElementById("guessedLetters");
@@ -41,53 +31,51 @@ var space = 1;
 var wordHolder = document.getElementById("computer-word");
 var start = document.getElementById("start-game");
 var reset = document.getElementById("reset-game");
+var bowDiv = document.getElementById("bow");
+var winCondition = document.getElementById("win-condition");
+var fact;
 
+// Function to reset the game so that it can be replayed
 
-//Function to create the word container
 reset = function(){
   wordHolder.innerHTML = " ";
   guessedLetters.innerHTML = " ";
   lives = 10;  
-  // usedKeys = " ";
   
-}
+};
 
-
+//Function to create the word container
 
 result = function () {
   wordHolder = document.getElementById("computer-word");
-  
+  bowDiv.setAttribute("class", "hidden");
 
   for (var i = 0; i < word.length; i++) {
     wordGuess = document.createElement("span");
     wordGuess.setAttribute("id", "guess"+i);
+    wordGuess.setAttribute("class", "guess");
     if (word[i] === "-") {
       wordGuess.innerHTML = "-";
       space = 1;
     } else {
       wordGuess.innerHTML = "_";
-    }
+    };
 
     wordHolder.appendChild(wordGuess);
-    console.log(word)
-  }
-}
-
+  };
+};
 
 // Set the way the computer is going to randomly choose words. Now this has turned into click to make everything work. Decided to wrap the word choice in its own function so that maybe I will be able to reuse it.
-
-
 
 play = function() {
   word = wordChoices[Math.floor(Math.random() * wordChoices.length)];
   lives = 10;
   counter = 0;
   space = 0;
-  
+  console.log(word)
   result();
   comments();
-  check();
-  // console.log(word);
+  check();  
 };
 
 //Getting the button to work
@@ -100,56 +88,29 @@ start.addEventListener("click", function(){
 
   
 
-// Set the way the user is going to select letters, use functions!
+// Set the way the user is going to select letters and so that they cannot repeat the same letters. This also check to see if the letter corresponds to one of the letters in the word and displays that letter if it does or reduces the lives if it doesn't.
 
-// var userGuess = function storeKey(event) {
-//   return (event.key);
-// };
 check = function() {
 
 var usedKeys = [ ];  
 
-document.onkeyup = function(event) {
-  
+document.onkeyup = function(event) {  
   
   var keypress = event.key.toLowerCase();  
   var userGuess = storeKey(event);
-  var fired = true;
-
-
-
-  // if (usedKeys.includes(keypress)) {
-  //   fired = false;  
-    
-  // } else {
-  //   fired = true;
-  // };
   
   if (usedKeys.includes(keypress) == false) {
-  if (keypress == "a" || keypress == "b" || keypress == "c" || keypress == "d" || keypress == "e" || keypress == "f" || keypress == "g" || keypress == "h" || keypress == "i" || keypress == "j" || keypress == "k" || keypress == "l" || keypress == "m" || keypress == "n" || keypress == "o" || keypress == "p" || keypress == "q" || keypress == "r" || keypress == "s" || keypress == "t" || keypress == "u" || keypress == "v" || keypress == "w" || keypress == "x" || keypress == "y" || keypress == "z") {
+  if (keypress == "a" || keypress == "b" || keypress == "c" || keypress == "d" || keypress == "e" || keypress == "f" || keypress == "g" || keypress == "h" || keypress == "i" || keypress == "j" || keypress == "k" || keypress == "l" || keypress == "m" || keypress == "n" || keypress == "o" || keypress == "p" || keypress == "q" || keypress == "r" || keypress == "s" || keypress == "t" || keypress == "u" || keypress == "v" || keypress == "w" || keypress == "x" || keypress == "y" || keypress == "z") {   
     
-  // guessedLetters.innerHTML += userGuess;
-    
-    usedKeys.push(userGuess);
-    console.log(usedKeys);
-    
-
-
+    usedKeys.push(userGuess);    
     
     for (var i = 0; i < word.length; i++) {
       if (word[i] === userGuess) {        
         var changeLetter = document.getElementById("guess"+i);
-        changeLetter.innerHTML=userGuess;
-        // guesses[i].innerHTML = userGuess;
-        // guesses[i] = userGuess;
-        // guesses[i] = wordGuess[i];
-        // wordGuess[1].innerHTML = userGuess;
-        // guesses[i].innerHTML = userGuess;
+        changeLetter.innerHTML=userGuess;       
         counter += 1;
-        // guessedLetters.innerHTML += userGuess;
-
-      } 
-    }
+      }; 
+    };
     var j = (word.indexOf(userGuess));
     if (j === -1) {
       lives -= 1;
@@ -166,27 +127,14 @@ document.onkeyup = function(event) {
 
 };
 
-
-  // var guessedLetters = document.getElementById("guessedLetters")
-
-  // guessedLetters.textContent = userGuess
-
 };
 
 function storeKey(event) {
   return ("" + event.key);
 };
-  // console.log(userGuess)
 
-// userGuess = document.onkeyup(event)
+  // Show lives and determine win condition and display value on the DOM. Added a way of resetting if another letter is pressed.
 
-
-
-
-// Research how to do an object to put logic in it
-
-
-  // Show lives
   comments = function () {
     showLives.innerHTML = "You have " + lives + " lives";
     if (lives < 1) {
@@ -203,6 +151,10 @@ function storeKey(event) {
     for (var i = 0; i < word.length; i++) {
       if (counter + space === word.length) {
         showLives.innerHTML = "You Win! Please click on New Game or press any key to continue playing";
+        winCondition.setAttribute("id", word);
+        fact = document.getElementById(word);
+        
+
         reset();
         document.onkeyup = function(event) {
           var keypress = event.key.toLowerCase();
@@ -214,28 +166,6 @@ function storeKey(event) {
       };
     };
   };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
    // Do not really understand how to do this from scratch but thought it was really cool and wanted to include it. Couldn't get it to work properly, will try again later as I want to get the core of the game going first. 
 
@@ -307,28 +237,6 @@ function storeKey(event) {
      draw (60, 70, 20, 100);
    };
   
-  drawArray = [rightLeg, leftLeg, rightArm, leftArm,  torso,  head, frame4, frame3, frame2, frame1]; 
-
-
-// Check for whether the user guessed letter matches any of the character in the randomly generated word
-
-
-// If the character matches reveal that letter from the word
-
-
-
-// If the character does not match then reveal one of the parts of the hangman picture
-
-
-// If the word is guess create a win condition at the end
-
-
-
-// if user runs out of chances display lose condition at the end
-
-
-
-
-//Reset game and choose a different word. Did this by asking the player to click on New Game. Will try later to see if I can automate that.
+  drawArray = [rightLeg, leftLeg, rightArm, leftArm,  torso,  head, frame4, frame3, frame2, frame1];
 
 };

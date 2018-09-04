@@ -10,28 +10,31 @@
 </head>
 <body>
   <main>
-    <section>
+    <section class="rules">
       <h1>Wan's Hangman Game</h1>
+        <hr id="line">
+  <!-- Paragraph explaining the game and rules -->  
 
-  <!-- Paragraph explaining the game and rules -->
-
-      <p>Hi! Welcome to my game. The rules are very simple:</p>
-      <ol>
-        <li>The computer will chose a random word</li>
-        <li>You can guess a letter</li>
-        <li>If its part of the word that letter will be revealed if it is not part of the word you lose a life</li>
-        <li>If you guess the word corrently you will be awarded a point if you don't your lose counter will increase</li>
-        <li>Have fun!</li>
-      </ol>
+        <p>Hi! Welcome to my game. The rules are very simple:</p>
+        <br>
+        <ol>
+          <li>The computer will chose a random  word.</li>
+          <li>You can guess a letter by pressing a  letter in your keyboard.</li>
+          <li>If its part of the word that letter will  be revealed if it is not part of the word you  lose a life.</li>
+          <li>If you guess the word corrently you will  win but ig you run our of lives you will   lose.</li>
+          <li>The theme is Japanese Martial Arts</li>
+          <li>Have fun!</li>
+        </ol>
     </section>
 
   <!-- Picture of hangman, hopefully with overimposed elements that can dissapear to reveal the rest of the image below -->
-
+  <hr id="line">
     <section>
-      <h2>Hangman</h2>
-      <div>
-        <img src="" alt="placeholder">
-
+      <!-- <h2>Hangman</h2> -->
+      <div id="bow">
+        <p class="bow-words">Ready? Bow!</p>
+        <img src="assets/images/bow.gif" alt="placeholder">
+        <p class="bow-words">Begin!</p>
       </div>
 
 <!-- Actual game interface -->
@@ -41,15 +44,17 @@
 
         </h3>
         <div>
-          <p>Guessed Letters</p>
           <br>
+          <button id="start-game">New Game</button>
+          <hr id="line">
           <p id="computer-word"></p>
           <br>
+          <p class="guess-letters"></p>
           <p id="guessedLetters"></p>
+          <br class="break-lives">
           <p id="lives"></p>       
-          <br>
-          <button id="start-game">New Game</button>            
-          <p id="win-condition"></p>            
+          <br>          
+          <div id="win-condition"></div>
         </div>
 
       </div>

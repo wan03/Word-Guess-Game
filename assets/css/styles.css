@@ -1,2 +1,77 @@
-/* Not sure what I'm doing here yet but probably a martial arts theme
-Maybe Judo or Japanese Ju Jutsu */
+body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  font-size: 1vm;
+  background-image: url(../images/clouds-dawn-dusk-46253.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 65%; 
+  margin: auto;
+  margin-top: 10%;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0 auto;
+  text-align: center;
+  color: red;
+}
+
+h2 {
+  font-size: 1.8rem;
+  text-align: center;
+  color: white;
+  margin-bottom: 1rem;  
+}
+
+#line {
+margin-bottom: 1rem;
+}
+
+.bow {
+  margin: 0 auto;
+}
+
+.bow-words{
+  font-size: 1.5rem;
+  color: white;  
+}
+
+.rules {
+  font-size: 1.3rem;
+  padding: 4px;
+  margin: 5px auto;
+  color: white;  
+}
+
+.guess-letters {
+  color: white;
+}
+
+.guess {
+  font-size: 1.5rem;
+  color: rgb(63, 63, 63);
+}
+
+#guessedLetters {
+  color: red;
+  font-size: 1.2rem;
+}
+
+#lives {
+  font-size: 1.3rem;
+  color: white;
+}
+
+#start-game {
+  background-image: url(../images/japanflag.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  border: none;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
