@@ -1,4 +1,4 @@
-// On load funtion (seems cool)
+// On load funtion
 window.onload = function () {
 
 // Declare needed variables
@@ -34,13 +34,16 @@ var reset = document.getElementById("reset-game");
 var bowDiv = document.getElementById("bow");
 var winCondition = document.getElementById("win-condition");
 var fact;
+var wordExist = 0;
+var winningWord;
 
 // Function to reset the game so that it can be replayed
 
 reset = function(){
   wordHolder.innerHTML = " ";
   guessedLetters.innerHTML = " ";
-  lives = 10;  
+  lives = 10;
+  counter = 0;      
   
 };
 
@@ -65,17 +68,204 @@ result = function () {
   };
 };
 
+// Detect word that wins and add appropriate response to the DOM
+
+winner = function() {
+
+winCondition.setAttribute("id", winningWord);
+
+if (word == "throw") {
+  fact = document.getElementById(word);
+  var ifrm = document.createElement("iframe");
+  ifrm.setAttribute("src", "https://www.youtube.com/embed/OWW2pr04JUY?rel=0&amp;start=8");
+  ifrm.setAttribute("frameborder", "0"); 
+  ifrm.setAttribute("allow", "encrypted-media");    
+  ifrm.setAttribute("id", word);  
+  ifrm.style.width = "560px";
+  ifrm.style.height = "315px";
+  winCondition.appendChild(ifrm);  
+  winCondition.removeAttribute("id", word);  
+ 
+} else if (word == "kick"){ 
+  fact = document.getElementById(word);
+  var ifrm = document.createElement("iframe");
+  ifrm.setAttribute("src", "https://www.youtube.com/embed/dRaz5_0oUU4");
+  ifrm.setAttribute("frameborder", "0");  
+  ifrm.setAttribute("allow", "encrypted-media");
+  ifrm.setAttribute("id", word);  
+  ifrm.style.width = "560px";
+  ifrm.style.height = "315px";
+  winCondition.appendChild(ifrm);
+  winCondition.removeAttribute("id", word);
+
+} else if (word == "punch"){
+  fact = document.getElementById(word);
+  var ifrm = document.createElement("iframe");
+  ifrm.setAttribute("src", "https://www.youtube.com/embed/6b8Z-RzhaQc");
+  ifrm.setAttribute("frameborder", "0"); 
+  ifrm.setAttribute("allow", "encrypted-media");
+  ifrm.setAttribute("id", word);  
+  ifrm.style.width = "560px";
+  ifrm.style.height = "315px";
+  winCondition.appendChild(ifrm);
+  winCondition.removeAttribute("id", word);
+
+} else if (word == "judo"){
+  fact = document.getElementById(word);
+  var ifrm = document.createElement("iframe");
+  ifrm.setAttribute("src", "https://www.youtube.com/embed/dFp-dy4NXD8");
+  ifrm.setAttribute("frameborder", "0"); 
+  ifrm.setAttribute("allow", "encrypted-media");
+  ifrm.setAttribute("id", word);  
+  ifrm.style.width = "560px";
+  ifrm.style.height = "315px";
+  winCondition.appendChild(ifrm);
+  winCondition.removeAttribute("id", word);
+
+} else if (word == "karate"){
+  fact = document.getElementById(word);
+  var ifrm = document.createElement("iframe");
+  ifrm.setAttribute("src", "https://www.youtube.com/embed/b5xbGct2E8E?rel=0");
+  ifrm.setAttribute("frameborder", "0"); 
+  ifrm.setAttribute("allow", "encrypted-media");
+  ifrm.setAttribute("id", word);  
+  ifrm.style.width = "560px";
+  ifrm.style.height = "315px";
+  winCondition.appendChild(ifrm);
+  winCondition.removeAttribute("id", word);
+
+} else if (word == "grappling"){
+  fact = document.getElementById(word);
+  var ifrm = document.createElement("iframe");
+  ifrm.setAttribute("src", "https://www.youtube.com/embed/d7125-XhCps");
+  ifrm.setAttribute("frameborder", "0"); 
+  ifrm.setAttribute("allow", "encrypted-media");
+  ifrm.setAttribute("id", word);  
+  ifrm.style.width = "560px";
+  ifrm.style.height = "315px";
+  winCondition.appendChild(ifrm);
+  winCondition.removeAttribute("id", word);
+
+} else if (word == "choke"){
+  fact = document.getElementById(word);
+  var ifrm = document.createElement("iframe");
+  ifrm.setAttribute("src", "https://www.youtube.com/embed/OlDSm8UTK20");
+  ifrm.setAttribute("frameborder", "0"); 
+  ifrm.setAttribute("allow", "encrypted-media");
+  ifrm.setAttribute("id", word);  
+  ifrm.style.width = "560px";
+  ifrm.style.height = "315px";
+  winCondition.appendChild(ifrm);
+  winCondition.removeAttribute("id", word);
+
+} else if (word == "hyperextension"){
+  fact = document.getElementById(word);
+  var ifrm = document.createElement("iframe");
+  ifrm.setAttribute("src", "https://www.youtube.com/embed/Tf7O9l9kA2Y");
+  ifrm.setAttribute("frameborder", "0");  
+  ifrm.setAttribute("allow", "encrypted-media");
+  ifrm.setAttribute("id", word);  
+  ifrm.style.width = "560px";
+  ifrm.style.height = "315px";
+  winCondition.appendChild(ifrm);
+  winCondition.removeAttribute("id", word);
+
+} else if (word == "defense"){
+  fact = document.getElementById(word);
+  var ifrm = document.createElement("iframe");
+  ifrm.setAttribute("src", "https://www.youtube.com/embed/n0Eo74qbDww");
+  ifrm.setAttribute("frameborder", "0"); 
+  ifrm.setAttribute("allow", "encrypted-media");
+  ifrm.setAttribute("id", word);  
+  ifrm.style.width = "560px";
+  ifrm.style.height = "315px";
+  winCondition.appendChild(ifrm);
+  winCondition.removeAttribute("id", word);
+
+} else if (word == "tournament"){
+  fact = document.getElementById(word);
+  var ifrm = document.createElement("iframe");
+  ifrm.setAttribute("src", "https://www.youtube.com/embed/w84H1S2SPgw");
+  ifrm.setAttribute("frameborder", "0");  
+  ifrm.setAttribute("allow", "encrypted-media");
+  ifrm.setAttribute("id", word);  
+  ifrm.style.width = "560px";
+  ifrm.style.height = "315px";
+  winCondition.appendChild(ifrm);
+  winCondition.removeAttribute("id", word);
+
+} else if (word == "arm-bar"){
+  fact = document.getElementById(word);
+  var ifrm = document.createElement("iframe");
+  ifrm.setAttribute("src", "https://www.youtube.com/embed/n2dTvWLlRm0");
+  ifrm.setAttribute("frameborder", "0");  
+  ifrm.setAttribute("allow", "encrypted-media");
+  ifrm.setAttribute("id", word);  
+  ifrm.style.width = "560px";
+  ifrm.style.height = "315px";
+  winCondition.appendChild(ifrm);
+  winCondition.removeAttribute("id", word);
+
+} else if (word == "jigoro-kano"){
+  fact = document.getElementById(word);
+  var ifrm = document.createElement("iframe");
+  ifrm.setAttribute("src", "https://www.youtube.com/embed/FoFwE8pX2js");
+  ifrm.setAttribute("frameborder", "0"); 
+  ifrm.setAttribute("allow", "encrypted-media");
+  ifrm.setAttribute("id", word);  
+  ifrm.style.width = "560px";
+  ifrm.style.height = "315px";
+  winCondition.appendChild(ifrm);
+  winCondition.removeAttribute("id", word);
+
+} else if (word == "morihei-ueshiba"){
+  fact = document.getElementById(word);
+  var ifrm = document.createElement("iframe");
+  ifrm.setAttribute("src", "https://www.youtube.com/embed/8V7NHLlmT3Y");
+  ifrm.setAttribute("frameborder", "0"); 
+  ifrm.setAttribute("allow", "encrypted-media");
+  ifrm.setAttribute("id", word);  
+  ifrm.style.width = "560px";
+  ifrm.style.height = "315px";
+  winCondition.appendChild(ifrm);
+  winCondition.removeAttribute("id", word);
+
+} else if (word == "ju-jutsu"){
+  fact = document.getElementById(word);
+  var ifrm = document.createElement("iframe");
+  ifrm.setAttribute("src", "https://www.youtube.com/embed/wLRc7SIsj2s");
+  ifrm.setAttribute("frameborder", "0");  
+  ifrm.setAttribute("allow", "encrypted-media");
+  ifrm.setAttribute("id", word);  
+  ifrm.style.width = "560px";
+  ifrm.style.height = "315px";
+  winCondition.appendChild(ifrm);
+  winCondition.removeAttribute("id", word);
+
+};
+};
+
+// Function to delete de video that gets created when person wins.
+
+deleteVideo = function() {  
+if (wordExist != 0) {     
+document.getElementById(winningWord).remove();
+wordExist = 0; 
+};
+};
+
 // Set the way the computer is going to randomly choose words. Now this has turned into click to make everything work. Decided to wrap the word choice in its own function so that maybe I will be able to reuse it.
 
-play = function() {
+play = function() {  
+  deleteVideo();
   word = wordChoices[Math.floor(Math.random() * wordChoices.length)];
+  winningWord = word;
   lives = 10;
   counter = 0;
-  space = 0;
-  console.log(word)
+  space = 0;  
   result();
   comments();
-  check();  
+  check();   
 };
 
 //Getting the button to work
@@ -100,6 +290,7 @@ document.onkeyup = function(event) {
   var userGuess = storeKey(event);
   
   if (usedKeys.includes(keypress) == false) {
+
   if (keypress == "a" || keypress == "b" || keypress == "c" || keypress == "d" || keypress == "e" || keypress == "f" || keypress == "g" || keypress == "h" || keypress == "i" || keypress == "j" || keypress == "k" || keypress == "l" || keypress == "m" || keypress == "n" || keypress == "o" || keypress == "p" || keypress == "q" || keypress == "r" || keypress == "s" || keypress == "t" || keypress == "u" || keypress == "v" || keypress == "w" || keypress == "x" || keypress == "y" || keypress == "z") {   
     
     usedKeys.push(userGuess);    
@@ -119,21 +310,19 @@ document.onkeyup = function(event) {
       // animate();
     } else {
       comments();
-    };
-  
+    };  
+  };  
   };
-  
-  };
-
+};
 };
 
-};
+//Storing event.key so that other variables can use it.
 
 function storeKey(event) {
   return ("" + event.key);
 };
 
-  // Show lives and determine win condition and display value on the DOM. Added a way of resetting if another letter is pressed.
+  // Show lives and determine win condition and display value on the DOM. Added a way of resetting if another letter is pressed. Only using it for when player loses because it is very easy to hit a letter and if you do that when you win you will not be able to see the video.
 
   comments = function () {
     showLives.innerHTML = "You have " + lives + " lives";
@@ -144,28 +333,24 @@ function storeKey(event) {
         var keypress = event.key.toLowerCase();
         if (keypress == "a" || keypress == "b" || keypress == "c" || keypress == "d" || keypress == "e" || keypress == "f" || keypress == "g" || keypress == "h" || keypress == "i" || keypress == "j" || keypress == "k" || keypress == "l" || keypress == "m" || keypress == "n" || keypress == "o" || keypress == "p" || keypress == "q" || keypress == "r" || keypress == "s" || keypress == "t" || keypress == "u" || keypress == "v" || keypress == "w" || keypress == "x" || keypress == "y" || keypress == "z") {
             play();
-
         };
         };
     };
-    for (var i = 0; i < word.length; i++) {
-      if (counter + space === word.length) {
-        showLives.innerHTML = "You Win! Please click on New Game or press any key to continue playing";
-        winCondition.setAttribute("id", word);
-        fact = document.getElementById(word);
-        
 
-        reset();
+      if (counter + space === word.length) {
+        showLives.innerHTML = "You Win! Enjoy the video below. Once you are ready please click on New Game to continue playing.";
+        wordExist++;                
+        winner();
+        reset();        
         document.onkeyup = function(event) {
           var keypress = event.key.toLowerCase();
-          if (keypress == "a" || keypress == "b" || keypress == "c" || keypress == "d" || keypress == "e" || keypress == "f" || keypress == "g" || keypress == "h" || keypress == "i" || keypress == "j" || keypress == "k" || keypress == "l" || keypress == "m" || keypress == "n" || keypress == "o" || keypress == "p" || keypress == "q" || keypress == "r" || keypress == "s" || keypress == "t" || keypress == "u" || keypress == "v" || keypress == "w" || keypress == "x" || keypress == "y" || keypress == "z") {
-              play();
-  
+          if (keypress == "a" || keypress == "b" || keypress == "c" || keypress == "d" || keypress == "e" || keypress == "f" || keypress == "g" || keypress == "h" || keypress == "i" || keypress == "j" || keypress == "k" || keypress == "l" || keypress == "m" || keypress == "n" || keypress == "o" || keypress == "p" || keypress == "q" || keypress == "r" || keypress == "s" || keypress == "t" || keypress == "u" || keypress == "v" || keypress == "w" || keypress == "x" || keypress == "y" || keypress == "z") {          
+          //  play();
+          showLives.innerHTML = "You Win! Enjoy the video below. Once you are ready please click on New Game to continue playing.";  
           };
-          };
+          };         
       };
-    };
-  };
+    }; 
 
    // Do not really understand how to do this from scratch but thought it was really cool and wanted to include it. Couldn't get it to work properly, will try again later as I want to get the core of the game going first. 
 
